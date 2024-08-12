@@ -1,11 +1,12 @@
-// src/components/Movies.js
+// Movies.js
 import React from 'react';
+import '../App.css'; 
 
 const Movies = () => {
   return (
-    <div>
+    <div className="page-content movies-page">
       <h1>Movies</h1>
-      <p>This is the Movies page.</p>
+      <p>Here are some movies listed.</p>
     </div>
   );
 };

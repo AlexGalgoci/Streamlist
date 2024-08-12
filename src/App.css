@@ -1,66 +1,76 @@
-/* src/App.css */
-body {
-  font-family: Arial, sans-serif;
-}
-
-nav {
+/* Navbar Styling */
+.navbar {
   background-color: #333;
-  padding: 1rem;
+  padding: 10px;
+  margin: 0; /* Ensure there's no margin around the navbar */
+  position: fixed; /* Keep the navbar fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-nav ul {
+.navbar-list {
   list-style: none;
-  padding: 0;
   display: flex;
   justify-content: space-around;
-}
-
-nav ul li {
   margin: 0;
+  padding: 0;
 }
 
-nav ul li a {
-  color: white;
+.navbar-item {
+  margin: 0 10px;
+}
+
+.navbar-link {
+  color: #fff;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+.navbar-link:hover {
+  color: #ddd;
+}
+
+.navbar-link img {
+  filter: invert(1); /* This will make the image white */
+  margin-right: 5px;
+}
+
+/* Page Content Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 60px; /* Adjust based on the height of your navbar */
+  background-color: #f8f9fa;
 }
 
 h1 {
   color: #333;
+  margin-top: 20px;
+  padding: 10px;
 }
 
-input[type="text"] {
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+p {
+  color: #666;
+  padding: 10px;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+/* General Content Padding */
+.content {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-button:hover {
-  background-color: #555;
+/* Optional: Additional Styling for Text and Images */
+.content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  background-color: #fff;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.content h2, .content h3, .content h4 {
+  color: #333;
 }
