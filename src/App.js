@@ -3,9 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StreamList from './components/StreamList';
 import Navbar from './components/Navbar';
-import Movies from './components/Movies'; // Assuming Movies component is defined
-import Cart from './components/Cart'; // Assuming Cart component is defined
-import About from './components/About'; // Assuming About component is defined
+import Movies from './components/Movies';
+import Cart from './components/Cart';
+import About from './components/About';
 
 const App = () => {
   return (
