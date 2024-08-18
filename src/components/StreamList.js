@@ -5,15 +5,10 @@ import './StreamList.css';
 const StreamList = () => {
   const [input, setInput] = useState('');
   const [type, setType] = useState('Movie');
-  const [list, setList] = useState([]);
-
-  // Load list from localStorage when the component mounts
-  useEffect(() => {
+  const [list, setList] = useState(() => {
     const storedList = JSON.parse(localStorage.getItem('streamList'));
-    if (storedList) {
-      setList(storedList);
-    }
-  }, []);
+    return storedList ? storedList : [];
+  });
 
   // Save list to localStorage whenever it changes
   useEffect(() => {
