@@ -7,19 +7,6 @@ const SubscriptionList = () => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [showModal, setShowModal] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    name: '',
-    email: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
-    cardNumber: '',
-    expiration: '',
-    cvv: ''
-  });
-
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -90,22 +77,9 @@ const SubscriptionList = () => {
   };
 
   const handleCheckout = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleConfirmOrder = (e) => {
-    e.preventDefault();
-    alert('Order confirmed!');
-    setShowModal(false);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserInfo({ ...userInfo, [name]: value });
+    localStorage.setItem('cart', JSON.stringify(cart)); // Store cart in localStorage for new window
+    const newWindow = window.open('/checkout', 'Checkout', 'width=800,height=900');
+    newWindow.focus();
   };
 
   const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
@@ -142,132 +116,6 @@ const SubscriptionList = () => {
         <div className="checkout-bar">
           <span>Total: ${totalAmount}</span>
           <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
-        </div>
-      )}
-
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2>Checkout</h2>
-              <button className="close-modal" onClick={handleCloseModal}>×</button>
-            </div>
-            <p>Order Summary:</p>
-            <ul>
-              {cart.map(item => (
-                <li key={item.id}>
-                  {item.service} - ${item.price.toFixed(2)} x {item.quantity}
-                  <div className="quantity-adjust">
-                    <button className="subscription-button remove-button" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
-                      -
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button className="subscription-button add-button" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
-                      +
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <h3>Total: ${totalAmount}</h3>
-
-            <form onSubmit={handleConfirmOrder}>
-              <div className="form-group wide">
-                <label>Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={userInfo.name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group wide">
-                <label>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={userInfo.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Address</label>
-                <input
-                  type="text"
-                  name="address"
-                  value={userInfo.address}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>City</label>
-                <input
-                  type="text"
-                  name="city"
-                  value={userInfo.city}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>State</label>
-                <input
-                  type="text"
-                  name="state"
-                  value={userInfo.state}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>ZIP Code</label>
-                <input
-                  type="text"
-                  name="zip"
-                  value={userInfo.zip}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group wide">
-                <label>Card Number</label>
-                <input
-                  type="text"
-                  name="cardNumber"
-                  value={userInfo.cardNumber}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group half">
-                <label>Expiration Date</label>
-                <input
-                  type="text"
-                  name="expiration"
-                  value={userInfo.expiration}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group half">
-                <label>CVV</label>
-                <input
-                  type="text"
-                  name="cvv"
-                  value={userInfo.cvv}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="modal-actions">
-                <button type="submit">Confirm Order</button>
-                <button type="button" onClick={handleCloseModal}>Cancel</button>
-              </div>
-            </form>
-          </div>
         </div>
       )}
     </div>
